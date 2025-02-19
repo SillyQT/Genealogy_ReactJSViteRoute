@@ -1,54 +1,43 @@
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
+import PropTypes from 'prop-types';
 
-const LoginForm = () => {
+const LoginForm = ({ handleSubmit }) => {
     return (
-        <Container maxWidth="sm">
-            <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                minHeight="100vh"
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+            />
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+            />
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
             >
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Login
-                </Typography>
-                <form noValidate autoComplete="off">
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        style={{ margin: '24px 0 16px' }}
-                    >
-                        Sign In
-                    </Button>
-                </form>
-            </Box>
-        </Container>
+                Sign In
+            </Button>
+        </Box>
     );
+};
+
+LoginForm.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

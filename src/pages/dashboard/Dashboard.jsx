@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,10 +10,12 @@ export default function Dashboard() {
 
   return (
     <div className="p-6">
-      <h1>Chào mừng đến với Dashboard</h1>
+      <h1>Dashboard</h1>
       <button onClick={handleLogout} className="mt-4 p-2 bg-red-500 text-white">
         Đăng xuất
       </button>
     </div>
   );
-}
+};
+
+export default Dashboard;
