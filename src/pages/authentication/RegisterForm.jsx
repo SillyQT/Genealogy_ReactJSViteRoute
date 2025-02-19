@@ -1,9 +1,21 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, IconButton, InputAdornment } from '@mui/material';
+import { useState } from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 
 const RegisterForm = ({ handleSubmit }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
             <Typography component="h1" variant="h5">
@@ -26,9 +38,23 @@ const RegisterForm = ({ handleSubmit }) => {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 autoComplete="new-password"
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                            >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
             <TextField
                 margin="normal"
@@ -36,9 +62,23 @@ const RegisterForm = ({ handleSubmit }) => {
                 fullWidth
                 name="confirmPassword"
                 label="Confirm Password"
-                type="password"
+                type={showConfirmPassword ? 'text' : 'password'}
                 id="confirmPassword"
                 autoComplete="new-password"
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle confirm password visibility"
+                                onClick={handleClickShowConfirmPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                            >
+                                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
             <Button
                 type="submit"
