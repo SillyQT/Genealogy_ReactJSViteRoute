@@ -15,7 +15,6 @@ const LoginForm = ({ handleSubmit }) => {
 
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <br />
             <Typography component="h1" variant="h5">
                 Login
             </Typography>

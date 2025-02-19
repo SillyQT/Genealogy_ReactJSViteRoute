@@ -1,5 +1,4 @@
-import { Box, Button, TextField, IconButton } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
+import { Box, Button, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
@@ -7,15 +6,10 @@ import Typography from '@mui/material/Typography';
 const RegisterForm = ({ handleSubmit }) => {
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
-            
-            <IconButton component={Link} to="/login" sx={{ mb: 2 }}>
-                <ArrowBack />
-            </IconButton>
-
             <Typography component="h1" variant="h5">
                 Register
             </Typography>
-
+            <br />
             <TextField
                 margin="normal"
                 required
@@ -53,6 +47,15 @@ const RegisterForm = ({ handleSubmit }) => {
                 sx={{ mt: 3, mb: 2 }}
             >
                 Register
+            </Button>
+            <Button
+                component={Link}
+                to="/login"
+                fullWidth
+                variant="outlined"
+                sx={{ mt: 1 }}
+            >
+                Back to Login
             </Button>
         </Box>
     );
