@@ -1,39 +1,40 @@
-import { Container, CssBaseline, Paper } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {  Container, CssBaseline } from '@mui/material';
 import { Outlet } from "react-router-dom";
-import Logo from '../../component/Button/Logo';
-
-const theme = createTheme();
+import { useEffect, useState } from "react";
 
 const AuthLayout = () => {
+    const [background, setBackground] = useState(
+        "https://picsum.photos/10/10/?blur=2"
+    );
+
+    useEffect(() => {
+        const highResImage = new Image();
+        highResImage.src = "https://picsum.photos/1920/1080/?blur=2";
+        highResImage.onload = () => {
+          setBackground(highResImage.src);
+        };
+      }, []);
     return (
-        <ThemeProvider theme={theme}>
-            <Container
+        <Container
                 component="main"
-                maxWidth="xs"
+                maxWidth="fixed"
                 style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     minHeight: '100vh',
                 }}
-            >
-                <CssBaseline />
-                <Paper
-                    elevation={24}
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        padding: theme.spacing(2),
-                    }}
                 >
-                    <Logo />
-                    <Outlet /> {/* Sử dụng Outlet để hiển thị LoginForm hoặc RegisterForm */}
-                </Paper>
-            </Container>
-        </ThemeProvider>
+                <CssBaseline />
+                <Outlet /> 
+        </Container>
+        
     );
 };
+
 
 export default AuthLayout;

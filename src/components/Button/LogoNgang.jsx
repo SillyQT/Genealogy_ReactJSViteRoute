@@ -1,19 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import { Box, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+
 
 const Logo = () => {
     const navigate = useNavigate();
 
+
     const handleLogoClick = () => {
-        navigate('/dashboard');
+        navigate('/');
     };
 
     return (
-        <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <IconButton onClick={handleLogoClick} >
             <img
-                src="/genealogy.svg"
+                src="/genealogy-white.svg"
                 alt="Genealogy Logo"
                 style={{ cursor: 'pointer', width: '150px' 
                     
@@ -21,10 +24,13 @@ const Logo = () => {
             />
         </IconButton>
         <Typography variant="h4" gutterBottom style={{ color: '#1890ff', fontWeight: 'bold' }}>
-        Genealogy
+        
       </Typography>
         </Box>
     );
+};
+Logo.propTypes = {
+    customheight: PropTypes.object,
 };
 
 export default Logo;

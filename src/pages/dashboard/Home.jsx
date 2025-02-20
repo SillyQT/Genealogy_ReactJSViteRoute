@@ -1,10 +1,28 @@
+import { Container } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import AppBar from "../../components/AppBar";
 const Home = () => {
-    return (
-        <div>
-            <h1>Home Page</h1>
-            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTcUoOOfDtXk45eKqVOAnULTpFTTeyRhyF2X6cI-HeBw5GTlvMbwns9sPCkskWqyOmksgT-arjoKCjZwFuEI-5WcRF5t7BBFkGWKFZDbQ" alt="Placeholder Image" />
-        </div>
-    );
-  };
   
-  export default Home;
+  return (
+      <Container
+              // component="Home"
+              maxWidth="vm"
+              style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center', 
+                  minHeight: '100vh',
+                  padding: 0,
+              }}
+              >
+              <CssBaseline />
+              <AppBar /> 
+              
+              <Outlet /> 
+      </Container>
+      
+  );
+};
+
+export default Home;

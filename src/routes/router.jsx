@@ -1,18 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
+import ProfileSettings from "../pages/dashboard/ProfileSettings";
+import PrivateRoute from "../components/Helper/PrivateRoute";
 import Home from "../pages/dashboard/Home";
-import PrivateRoute from "../component/Helper/PrivateRoute";
-import Dashboard from "../pages/dashboard/Dashboard";
 import AuthLayout from "../pages/authentication/AuthLayout";
-import LoginForm from "../pages/authentication/LoginForm";
-import RegisterForm from "../pages/authentication/RegisterForm";
+import LoginForm from "../components/Form/LoginForm";
+import RegisterForm from "../components/Form/RegisterForm";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <PrivateRoute><Home /></PrivateRoute>,
         children: [
-            { path: "dashboard", element: <PrivateRoute><Dashboard /></PrivateRoute> },
+            // { path: "home", element: <PrivateRoute><Home /></PrivateRoute> },
         ],
+    },
+    {
+        path: "/profile",
+        element: <PrivateRoute><ProfileSettings /></PrivateRoute>,
     },
     {
         path: "/login",
