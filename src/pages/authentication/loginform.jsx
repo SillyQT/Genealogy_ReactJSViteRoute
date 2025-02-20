@@ -15,13 +15,13 @@ const LoginForm = ({ handleSubmit }) => {
 
     return (
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
             <Typography component="h1" variant="h5">
                 Login
             </Typography>
             <br />
             <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -31,7 +31,6 @@ const LoginForm = ({ handleSubmit }) => {
             />
             <TextField
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"

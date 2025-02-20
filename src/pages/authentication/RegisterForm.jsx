@@ -24,7 +24,6 @@ const RegisterForm = ({ handleSubmit }) => {
             <br />
             <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -34,7 +33,6 @@ const RegisterForm = ({ handleSubmit }) => {
             />
             <TextField
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -58,7 +56,6 @@ const RegisterForm = ({ handleSubmit }) => {
             />
             <TextField
                 margin="normal"
-                required
                 fullWidth
                 name="confirmPassword"
                 label="Confirm Password"

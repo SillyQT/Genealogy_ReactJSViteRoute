@@ -3,14 +3,35 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/genealogy.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Genealogy</title>
+  <style>
+    body {
+      background-image: url('https://picsum.photos/10/10/?blur=2');
+      /* Low resolution image */
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      transition: background-image 0.5s ease-in-out;
+    }
+  </style>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    // Replace the low resolution image with the high resolution image once it has loaded
+    const highResImage = new Image();
+    highResImage.src = 'https://picsum.photos/1920/1080/?blur=2';
+    highResImage.onload = () => {
+      document.body.style.backgroundImage = `url(${highResImage.src})`;
+    };
+  </script>
 </body>
 
 </html>
