@@ -1,18 +1,31 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate  } from "react-router-dom";
 import ProfileSettings from "../pages/dashboard/ProfileSettings";
 import PrivateRoute from "../components/Helper/PrivateRoute";
 import Home from "../pages/dashboard/Home";
 import AuthLayout from "../pages/authentication/AuthLayout";
 import LoginForm from "../components/Form/LoginForm";
 import RegisterForm from "../components/Form/RegisterForm";
+import Testapp from "../components/AppBar";
+// import GridNoteLayout from "../components/Form/GridNoteLayout";
 
 const router = createBrowserRouter([
+    {   //test
+        path: "/test",
+        element: <Testapp />,
+        children: [
+            // { path: "", element: <PrivateRoute><GridNoteLayout /></PrivateRoute> },
+        ],
+    },
     {
         path: "/",
         element: <PrivateRoute><Home /></PrivateRoute>,
         children: [
-            // { path: "home", element: <PrivateRoute><Home /></PrivateRoute> },
+            // { path: "", element: <PrivateRoute><GridNoteLayout /></PrivateRoute> },
         ],
+    },
+    {
+        path: "/home",
+        element: <PrivateRoute><Navigate to="/" replace /></PrivateRoute>,
     },
     {
         path: "/profile",
