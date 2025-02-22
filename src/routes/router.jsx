@@ -6,6 +6,7 @@ import AuthLayout from "../pages/authentication/AuthLayout";
 import LoginForm from "../components/Form/LoginForm";
 import RegisterForm from "../components/Form/RegisterForm";
 import Testapp from "../components/AppBar";
+import AdminPage from "../pages/dashboard/Admin";
 // import GridNoteLayout from "../components/Form/GridNoteLayout";
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         children: [
             { path: "", element: <RegisterForm /> },
         ],
+    },
+    {
+        path: "/admin",
+        element: <AdminPage/>,
     },
 ]);
 

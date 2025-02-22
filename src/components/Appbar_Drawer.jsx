@@ -1,42 +1,45 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { styled, useTheme, alpha } from '@mui/material/styles';
+import {
+    Box,
+    CssBaseline,
+    AppBar as MuiAppBar,
+    Toolbar,
+    List,
+    Divider,
+    IconButton,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    InputBase,
+    Switch,
+    Badge,
+    Tooltip,
+    Menu,
+    MenuItem,
+    Typography,
+    Fab,
+} from '@mui/material';
+import {
+    Menu as MenuIcon,
+    ChevronLeft as ChevronLeftIcon,
+    ChevronRight as ChevronRightIcon,
+    MoveToInbox as InboxIcon,
+    NotificationsNoneOutlined as NotificationsNoneOutlinedIcon,
+    DeleteOutlined as DeleteOutlinedIcon,
+    HomeOutlined as HomeOutlinedIcon,
+    Label as LabelIcon,
+    Search as SearchIcon,
+    Mail as MailIcon,
+    AccountCircle,
+    Notifications as NotificationsIcon,
+    Add as AddIcon,
+} from '@mui/icons-material';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LogoNgang from "./Button/LogoNgang";
-import LabelIcon from '@mui/icons-material/Label';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
-import { alpha } from '@mui/material/styles';
-import Switch from '@mui/material/Switch';
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import Tooltip from '@mui/material/Tooltip';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import GridNoteLayout from './Form/GridNoteLayout';
-import AddIcon from '@mui/icons-material/Add';
-import Fab from '@mui/material/Fab';
-
+import CreateNoteForm from '../components/Form/CreateNoteForm'; // Import the CreateNoteForm component
 
 const drawerWidth = 240;
 
@@ -199,12 +202,16 @@ export default function Appbar_Drawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [showCreateNoteForm, setShowCreateNoteForm] = React.useState(false); // State to control CreateNoteForm visibility
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
     const menuId = 'primary-search-account-menu';
 
+    const handleFabClick = () => {
+        setShowCreateNoteForm(true); // Show CreateNoteForm when Fab is clicked
+    };
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -348,7 +355,7 @@ export default function Appbar_Drawer() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {['Profile', 'Account', 'Dashboard', 'Logout'].map((setting) => (
+                            {['Profile', 'Logout'].map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                                 </MenuItem>
@@ -485,14 +492,32 @@ export default function Appbar_Drawer() {
                     ))}
                 </List>
             </Drawer>
-            <Main open={true} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}} >
+            <Main open={true} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
 
                 <DrawerHeader />
                 <GridNoteLayout />
             </Main>
-            <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+            <Fab sx={fab.sx} aria-label={fab.label} color={fab.color} onClick={handleFabClick}>
                 {fab.icon}
             </Fab>
+            {showCreateNoteForm && (
+                <Box
+                    sx={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 1300, // Ensure it is above other components
+                    }}
+                >
+                    <CreateNoteForm onClose={() => setShowCreateNoteForm(false)} />
+                </Box>
+            )}
         </Box>
     );
 }
